@@ -2,26 +2,53 @@
 # SPDX-FileCopyrightText: 2026 Meina Fukazawa
 # SPDX-License-Identifier: BSD-3-Clause
 
+import argparse
 import sys
 
-text = sys.stdin.read()
 
-chars = 0  # 空白を除く文字数
-total = 0  # 改行を除く、すべての文字数
-for c in text:
-    if c == "\n" or c == "\r":
-        continue
-    total += 1
-    if not c.isspace():
-        chars += 1
+def count(text):
+    chars = 0  # 空白を除く文字数
+    total = 0  # 改行を除く、すべての文字数
+    for c in text:
+        if c == "\n" or c == "\r":
+            continue
+        total += 1
+        if not c.isspace():
+            chars += 1
 
-lines = text.count("\n")
-if text != "" and not text.endswith("\n"):
-    lines += 1
+    lines = text.count("\n")
+    if text != "" and not text.endswith("\n"):
+        lines += 1
 
-sheets = (chars + 399) // 400
+    sheets = (chars + 399) // 400
+    return chars, total, lines, sheets
 
-print(f"文字数（空白を除く）: {chars}")
-print(f"総文字数（改行を除く）: {total}")
-print(f"行数: {lines}")
-print(f"原稿用紙（400字詰め）: {sheets} 枚")
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="日本語の文章の文字数を数えます。標準入力から読み、数字を1つ出力します。"
+    )
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-t", "--total", action="store_true",
+                       help="総文字数（改行を除く）を出力する")
+    group.add_argument("-l", "--lines", action="store_true",
+                       help="行数を出力する")
+    group.add_argument("-s", "--sheets", action="store_true",
+                       help="400字詰め原稿用紙の枚数を出力する")
+    args = parser.parse_args()
+
+    text = sys.stdin.read()
+    chars, total, lines, sheets = count(text)
+
+    if args.total:
+        print(total)
+    elif args.lines:
+        print(lines)
+    elif args.sheets:
+        print(sheets)
+    else:
+        print(chars)
+
+
+if __name__ == "__main__":
+    main()

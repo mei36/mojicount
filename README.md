@@ -1,11 +1,10 @@
 
-## 使い方
 # 文字数カウント
 ![test](https://github.com/mei36/robosys2026/actions/workflows/test.yml/badge.svg)
 
 日本語の文章の文字数を数えるコマンドです。
 
-##使い方
+## 使い方
 
 - 標準入力から文章を読みます。
 - 文字数を標準出力に表示します。

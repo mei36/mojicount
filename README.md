@@ -17,9 +17,9 @@ $ echo "こんにちは 世界" | ./mojicount
 ## インストール
 
 ```
-git clone https://github.com/mei36/mojicount.git
-cd mojicount
-chmod +x mojicount
+$ git clone https://github.com/mei36/mojicount.git
+$ cd mojicount
+$ chmod +x mojicount
 ```
 
 ## 使い方
@@ -28,9 +28,9 @@ chmod +x mojicount
 - 数えた結果を標準出力に表示します。
 
 ```
-./mojicount < report.txt
-cat report.txt | ./mojicount
-echo "吾輩は猫である。" | ./mojicount
+$ ./mojicount < report.txt
+$ cat report.txt | ./mojicount
+$ echo "吾輩は猫である。" | ./mojicount
 ```
 
 ## 出力の見方
@@ -53,7 +53,7 @@ echo "吾輩は猫である。" | ./mojicount
 ## テスト
 
 ```
-./test.bash
+$ ./test.bash
 ```
 
 GitHub に送るたびに、GitHub Actions が同じテストを自動で実行します。

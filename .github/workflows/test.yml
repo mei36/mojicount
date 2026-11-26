@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2026 Meina Fukazawa
+# SPDX-License-Identifier: BSD-3-Clause
+
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: テストを実行する
+        run: ./test.bash

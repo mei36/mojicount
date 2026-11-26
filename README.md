@@ -2,7 +2,7 @@
 
 [![test](https://github.com/mei36/mojicount/actions/workflows/test.yml/badge.svg)](https://github.com/mei36/mojicount/actions/workflows/test.yml)
 
-日本語の文章の文字数を数えるコマンド `mojicount` です。標準入力から文章を読み、数字を1つ出力します。
+日本語の文章の文字数を数えるコマンドです。標準入力から文章を読み、数字を1つ出力します。
 
 「2000字以内」「原稿用紙5枚」といった条件を、テキストファイルのまま確認できます。
 

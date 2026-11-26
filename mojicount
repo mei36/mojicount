@@ -6,6 +6,22 @@ import argparse
 import sys
 
 
+class JapaneseHelpFormatter(argparse.HelpFormatter):
+    # 使い方の行の先頭を、"usage: " から "使い方: " に変える
+    def add_usage(self, usage, actions, groups, prefix=None):
+        if prefix is None:
+            prefix = "使い方: "
+        super().add_usage(usage, actions, groups, prefix)
+
+
+class JapaneseParser(argparse.ArgumentParser):
+    # 間違った使い方のときのメッセージを日本語にする（標準エラー出力へ）
+    def error(self, message):
+        self.print_usage(sys.stderr)
+        self.exit(2, f"{self.prog}: エラー: 使い方が正しくありません。"
+                     f"{self.prog} -h で使い方を表示します。\n")
+
+
 def count(text):
     chars = 0  # 空白を除く文字数
     total = 0  # 改行を除く、すべての文字数
@@ -25,10 +41,15 @@ def count(text):
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="日本語の文章の文字数を数えます。標準入力から読み、数字を1つ出力します。"
+    parser = JapaneseParser(
+        description="日本語の文章の文字数を数えます。標準入力から読み、数字を1つ出力します。",
+        add_help=False,
+        formatter_class=JapaneseHelpFormatter,
     )
-    group = parser.add_mutually_exclusive_group()
+    options = parser.add_argument_group("オプション")
+    options.add_argument("-h", "--help", action="help",
+                         help="使い方を表示して終了する")
+    group = options.add_mutually_exclusive_group()
     group.add_argument("-t", "--total", action="store_true",
                        help="総文字数（改行を除く）を出力する")
     group.add_argument("-l", "--lines", action="store_true",

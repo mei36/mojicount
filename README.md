@@ -6,14 +6,14 @@
 
 「2000字以内」「原稿用紙5枚」といった条件を、テキストファイルのまま確認できます。
 
-```
+```bash
 $ echo "こんにちは 世界" | ./mojicount
 7
 ```
 
 ## インストール
 
-```
+```bash
 $ git clone https://github.com/mei36/mojicount.git
 $ cd mojicount
 $ chmod +x mojicount
@@ -23,7 +23,7 @@ $ chmod +x mojicount
 
 標準入力から文章を渡します。何も指定しなければ、空白を除いた文字数を出力します。
 
-```
+```bash
 $ ./mojicount < report.txt
 $ cat report.txt | ./mojicount
 ```
@@ -40,7 +40,7 @@ $ cat report.txt | ./mojicount
 
 オプションは、同時に1つしか指定できません。
 
-```
+```bash
 $ echo "こんにちは 世界" | ./mojicount -t
 8
 $ echo "こんにちは 世界" | ./mojicount -l
@@ -51,7 +51,7 @@ $ echo "こんにちは 世界" | ./mojicount -s
 
 出力が数字だけなので、ほかのコマンドと組み合わせられます。
 
-```
+```bash
 $ echo "今回は $(echo "あい う" | ./mojicount) 字です"
 今回は 3 字です
 ```
@@ -67,7 +67,7 @@ $ echo "今回は $(echo "あい う" | ./mojicount) 字です"
 
 ## テスト
 
-```
+```bash
 $ ./test.bash
 ```
 
